@@ -1,0 +1,78 @@
+/*
+ * Biblioteca_TP1.c
+ *
+ *  Created on: 11 abr. 2022
+ *      Author: Franco
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+float getFloat(float * pNumero, char * mensaje, char * mensajeError, float maximo, float minimo, float reintentos){
+	int auxNumero;
+	int retorno;
+	retorno = -1;
+
+	if(pNumero != NULL && maximo >= minimo){
+		do{
+			printf("%s", mensaje);
+			scanf("%d", &auxNumero);
+			reintentos--;
+			if(auxNumero >= minimo && auxNumero <= maximo){
+				*pNumero = auxNumero;
+				retorno = 0;
+				break;
+			}
+			else{
+				printf("%s", mensajeError);
+			}
+		}while(reintentos > 0);
+	}
+	return retorno;
+}
+
+float calcularDiferencia(float * pDiferencia, float operadorA, float operadorB){
+	int retorno;
+	float auxDiferencia;
+	retorno = -1;
+
+	auxDiferencia = operadorA - operadorB;
+	if(auxDiferencia < 0){
+		auxDiferencia = auxDiferencia * -1;
+	}
+	*pDiferencia = auxDiferencia;
+
+	retorno = 0;
+	return retorno;
+}
+
+float calcularCostos(float * pResultado, float precio, float porcentaje){
+	int retorno;
+	float auxResultado;
+	float auxPrecio;
+	retorno = -1;
+
+	auxResultado = precio * porcentaje;
+	*pResultado = auxResultado;
+
+	retorno = 0;
+	return retorno;
+}
+
+float calcularEnBitcoin(float * pResultado, float precio){
+	int auxResultado;
+	int retorno;
+	retorno = -1;
+
+	auxResultado = precio / 4606954.55;
+	*pResultado = auxResultado;
+
+	retorno = 0;
+	return retorno;
+}
+
+
+
+
+

@@ -1,0 +1,77 @@
+/*
+ * Biblioteca_TP1.c
+ *
+ *  Created on: 11 abr. 2022
+ *      Author: Franco
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+float calcularDiferencia(float * pDiferencia, float latam, float aerolineas){
+	int retorno;
+	float auxDiferencia;
+	retorno = -1;
+
+	auxDiferencia = latam - aerolineas;
+	*pDiferencia = auxDiferencia;
+
+	retorno = 0;
+	return retorno;
+}
+
+float calcularCostos(float * pResultado, float precio, char * mensaje){
+	int retorno;
+	float auxResultado;
+	float auxPrecio;
+	char auxMensaje;
+
+	retorno = -1;
+	auxPrecio = precio;
+
+	if(pResultado != NULL){
+		if(auxMensaje == "debito"){
+			auxResultado = auxPrecio * 0.9;
+		}
+		else if(auxMensaje == "credito"){
+			auxResultado = auxPrecio * 1.25;
+		}
+		else{
+			auxResultado = auxPrecio / 4606954.55;
+		}
+	}
+
+	*pResultado = auxResultado;
+
+	return retorno;
+}
+
+
+float ingresarDatos(float * pNumero, char * mensaje, char * mensajeError, float maximo, float minimo, float reintentos){
+	int auxNumero;
+	int retorno;
+	retorno = -1;
+
+
+	if(pNumero != NULL && maximo >= minimo){
+		do{
+			printf("%s", mensaje);
+			scanf("%d", &auxNumero);
+			reintentos--;
+
+			if(auxNumero >= minimo && auxNumero <= maximo){
+				*pNumero = auxNumero;
+				retorno = 0;
+				break;
+			}
+			else{
+				printf("%s", mensajeError);
+			}
+		}while(reintentos > 0);
+	}
+
+	return retorno;
+}
+
+
