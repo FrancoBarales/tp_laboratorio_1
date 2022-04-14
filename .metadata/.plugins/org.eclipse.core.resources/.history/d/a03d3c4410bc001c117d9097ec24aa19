@@ -36,7 +36,7 @@ int main(void){
 
 		switch(opcion){
 			case 1:
-				getFloat(&kilometros, "\nIngresar cantidad de kilometros (100 o mas): ", "Error. cantidad de kilometros invalida.", 100000, 100, 5);
+				getFloat(&kilometros, "\nIngresar cantidad de kilometros (100 o mas): ", "Error. valor invalido.", 100000, 100, 5);
 				flag1 = TRUE; // si se ingresaron correctamente los kilometros, se levanta la primera flag.
 				break;
 			case 2:

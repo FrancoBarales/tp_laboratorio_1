@@ -36,12 +36,12 @@ int main(void){
 
 		switch(opcion){
 			case 1:
-				getFloat(&kilometros, "\nIngresar cantidad de kilometros (100 o mas): ", "Error. cantidad de kilometros invalida.", 100000, 100, 5);
+				getFloat(&kilometros, "\nIngresar cantidad de kilometros: ", "Error. cantidad invalida de kilometros.");
 				flag1 = TRUE; // si se ingresaron correctamente los kilometros, se levanta la primera flag.
 				break;
 			case 2:
-				getFloat(&precioAerolineas, "\nIngresar precio del pasaje de Aerolineas (entre $10.000.000 y $20.000): ", "Error. Precio invalido. ", 10000000, 20000, 5);
-				getFloat(&precioLatam, "\nIngresar precio del pasaje de Latam (entre $10.000.000 y $20.000): ", "Error. Precio invalido. ", 10000000, 20000, 5);
+				getFloat(&precioAerolineas, "\nIngresar precio del pasaje de Aerolineas: ", "Error. Precio invalido. ");
+				getFloat(&precioLatam, "\nIngresar precio del pasaje de Latam: ", "Error. Precio invalido. ");
 				flag2 = TRUE; // si se ingresaron correctamente los precios, se levanta la segunda flag.
 				break;
 			case 3:

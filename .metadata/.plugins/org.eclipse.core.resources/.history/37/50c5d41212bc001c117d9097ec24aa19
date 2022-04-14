@@ -32,7 +32,7 @@ int main(void){
 	float diferencia = 0;
 
 	do{
-		opcion = menu();
+		opcion = menu(kilometros, precioAerolineas, precioLatam);
 
 		switch(opcion){
 			case 1:
