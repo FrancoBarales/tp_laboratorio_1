@@ -33,6 +33,7 @@ int main(void){
 
 	do{
 		opcion = menu();
+
 		switch(opcion){
 			case 1:
 				getFloat(&kilometros, "\nIngresar cantidad de kilometros: ", "Error. cantidad de kilometros invalida.", 100000, 100, 5);
@@ -100,3 +101,29 @@ int main(void){
 
 	return EXIT_SUCCESS;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

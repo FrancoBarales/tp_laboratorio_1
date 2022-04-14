@@ -2,7 +2,7 @@
  * funcionesMath.h
  *
  *  Created on: 14 abr. 2022
- *      Author: Franco Barales Illia
+ *      Author: Franco
  */
 
 #ifndef FUNCIONESMATH_H_
@@ -28,5 +28,7 @@ float multiplicar(float precio, float porcentaje);
 */
 
 float dividir(float precio, float dividendo);
+
+
 
 #endif /* FUNCIONESMATH_H_ */

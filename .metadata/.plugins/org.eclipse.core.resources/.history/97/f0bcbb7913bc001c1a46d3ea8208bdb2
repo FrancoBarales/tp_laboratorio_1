@@ -2,7 +2,7 @@
  * funcionesGet.c
  *
  *  Created on: 14 abr. 2022
- *      Author: Franco Barales Illia
+ *      Author: Franco
  */
 
 #include <stdio.h>
@@ -20,6 +20,7 @@ int menu(void)
 	printf("\n6) Salir");
 	printf("\n\nElegir opcion: ");
 	scanf("%d", &opcion);
+
 	return opcion;
 }
 

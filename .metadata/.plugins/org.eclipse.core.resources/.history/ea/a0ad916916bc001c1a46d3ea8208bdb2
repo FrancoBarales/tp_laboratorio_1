@@ -33,6 +33,7 @@ int main(void){
 
 	do{
 		opcion = menu();
+
 		switch(opcion){
 			case 1:
 				getFloat(&kilometros, "\nIngresar cantidad de kilometros: ", "Error. cantidad de kilometros invalida.", 100000, 100, 5);
@@ -95,8 +96,34 @@ int main(void){
 		}
 	}while(opcion != 6);
 
-	printf("Fin del programa...\n");
+	printf("Fin del programa...");
 	system("pause");
 
 	return EXIT_SUCCESS;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

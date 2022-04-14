@@ -22,4 +22,5 @@ int menu(void);
 
 float getFloat(float * pNumero, char * mensaje, char * mensajeError, float maximo, float minimo, float reintentos);
 
+
 #endif /* FUNCIONESGET_H_ */

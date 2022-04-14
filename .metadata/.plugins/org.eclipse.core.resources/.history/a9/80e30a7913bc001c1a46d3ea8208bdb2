@@ -2,7 +2,7 @@
  * funcionesGet.h
  *
  *  Created on: 14 abr. 2022
- *      Author: Franco Barales Illia
+ *      Author: Franco
  */
 
 #ifndef FUNCIONESGET_H_
@@ -16,10 +16,12 @@
 int menu(void);
 
 /*
- * getFloat recibe un rango (maximo y minimo), un numero de reintentos, un mensaje a mostrar,
- * y un mensaje de error en caso de que algo falle, asignando un valor a la variable puntero pNumero.
+ * getFloat recibe un rango, un numero de reintentos, un mensaje a mostrar,
+ * y un mensaje de error en caso de que algo falle, asignando un valor
+ * a la variable puntero pNumero.
 */
 
 float getFloat(float * pNumero, char * mensaje, char * mensajeError, float maximo, float minimo, float reintentos);
+
 
 #endif /* FUNCIONESGET_H_ */

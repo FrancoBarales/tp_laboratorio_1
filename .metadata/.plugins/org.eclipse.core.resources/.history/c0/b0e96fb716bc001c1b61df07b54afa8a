@@ -20,6 +20,7 @@ int menu(void)
 	printf("\n6) Salir");
 	printf("\n\nElegir opcion: ");
 	scanf("%d", &opcion);
+
 	return opcion;
 }
 
