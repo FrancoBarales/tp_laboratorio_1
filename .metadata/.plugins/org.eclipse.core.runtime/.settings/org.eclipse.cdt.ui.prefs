@@ -1,3 +1,11 @@
+buildConsoleBackgroundColor=255,255,255
+buildConsoleErrorStreamColor=128,0,0
+buildConsoleInfoStreamColor=0,255,255
+buildConsoleOutputStreamColor=255,255,255
+buildConsoleProblemBackgroundColor=128,0,0
+buildConsoleProblemHighlightedColor=128,0,0
+buildConsoleProblemInfoBackgroundColor=192,192,192
+buildConsoleProblemWarningBackgroundColor=138,138,0
 eclipse.preferences.version=1
 markOccurrences=false
 spelling_locale_initialized=true
