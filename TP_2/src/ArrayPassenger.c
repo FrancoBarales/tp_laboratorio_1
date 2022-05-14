@@ -75,16 +75,24 @@ int removePassenger(Passenger *list, int len, int id)
 {
 	char respuesta[3];
 	int retorno = -1;
-	int indice;
+	int index;
 
-	indice = findPassengerById(list, len, id);
-	utn_getNombre(respuesta, 3, "\n Esta seguro de eliminar al pasajero? (si/no):", "ERROR.\n" , 3);
-	strEnMinuscula(respuesta);
-	if (indice != -1 && strcmp(respuesta, "si") == 0)
+	index = findPassengerById(list, len, id);
+	if(index == 0)
 	{
-		list[indice].isEmpty = VACIO;
-		retorno = 0;
+		utn_getNombre(respuesta, 1, 3, "\n Esta seguro de eliminar al pasajero? (si/no):", "ERROR.\n" , 3);
+		strEnMinuscula(respuesta);
+		if (index != -1 && strcmp(respuesta, "si") == 0)
+		{
+			list[index].isEmpty = VACIO;
+			retorno = 0;
+		}
 	}
+	else
+	{
+		puts("\nERROR. No se pudo encontrar el index especificado.\n");
+	}
+
 	return retorno;
 }
 
@@ -98,25 +106,21 @@ int sortPassengers(Passenger *list, int len, int order)
 	{
 		switch (order)
 		{
-		/* menor a mayor */
-		case -1:
+		case -1: // menor a mayor
 			for (i = 0; i < len - 1; i++)
 			{
 				for (j = i + 1; j < len; j++)
 				{
-					//Compruebo que los pasajeros no esten eliminados del sistema
 					if (list[i].isEmpty == LLENO && list[j].isEmpty == LLENO)
 					{
 						if (strcmp(list[i].lastName, list[j].lastName) > 0)
 						{
-							//Intercambio de posiciones en el array
 							auxPassenger = list[i];
 							list[i] = list[j];
 							list[j] = auxPassenger;
 						}
 						else if (strcmp(list[i].lastName, list[j].lastName) == 0 && list[i].typePassenger > list[j].typePassenger)
 						{
-							//Intercambio de posiciones en el array
 							auxPassenger = list[i];
 							list[i] = list[j];
 							list[j] = auxPassenger;
@@ -127,9 +131,7 @@ int sortPassengers(Passenger *list, int len, int order)
 			retorno = 0;
 			printPassenger(list, len);
 			break;
-
-		/* mayor a menor*/
-		case 1:
+		case 1: // mayor a menor
 			for (i = 0; i < len - 1; i++)
 			{
 				for (j = i + 1; j < len; j++)
@@ -138,14 +140,12 @@ int sortPassengers(Passenger *list, int len, int order)
 					{
 						if (strcmp(list[i].lastName, list[j].lastName) < 0)
 						{
-							//Intercambio de posiciones en el array
 							auxPassenger = list[i];
 							list[i] = list[j];
 							list[j] = auxPassenger;
 						}
 						else if (strcmp(list[i].lastName, list[j].lastName) == 0 && list[i].typePassenger < list[j].typePassenger)
 						{
-							//Intercambio de posiciones en el array
 							auxPassenger = list[i];
 							list[i] = list[j];
 							list[j] = auxPassenger;
@@ -161,14 +161,13 @@ int sortPassengers(Passenger *list, int len, int order)
 	return retorno;
 }
 
-int printPassenger(Passenger *list, int length)
+int printPassenger(Passenger *list, int len)
 {
 	int retorno = -1;
 
-	if (list != NULL && length > 0)
+	if (list != NULL && len > 0)
 	{
-		printf("\nListado de pasajeros:");
-		for (int i = 0; i < length; i++)
+		for (int i = 0; i < len; i++)
 		{
 			if (list[i].isEmpty != VACIO)
 			{
@@ -201,18 +200,21 @@ int buscarIndexPorIsEmpty(Passenger list[], int len)
 int loadPassengerData(Passenger *list, int len)
 {
 	int retorno = -1;
+	int verifyPassenger;
+
 	Passenger newPassenger;
 
 	if(list != NULL && len > 0)
 	{
 		newPassenger.id = incrementarId();
-		utn_getNombre(newPassenger.name, 51, "\nIngrese el nombre del pasajero: ", "\nERROR. Datos no validos.", 3);
-		utn_getNombre(newPassenger.lastName, 51, "\nIngrese el apellido del pasajero: ", "\nERROR. Datos no validos.", 3);
-		utn_getNumeroFlotante(&newPassenger.price,"\nIngrese el precio del ticket (MAX $200.000, MIN $20.000): ","\nERROR. Datos no validos.", 20000, 200000, 3);
-		utn_getCadena(newPassenger.flycode, 11, "\nIngrese el codigo del vuelo (hasta 10 caracteres): ","\nERROR. Datos no validos.", 3);
-		utn_getNumero(&newPassenger.typePassenger,"\nIngrese el tipo de pasajero (1.Infante 2.Adulto 3.Jubilado): ","\nERROR. Opcion incorrecta.",1, 3, 3);
+		utn_getNombre(newPassenger.name, 1, 51, "\nIngrese el nombre del pasajero: ", "\nERROR. Datos no validos.", 30);
+		utn_getNombre(newPassenger.lastName, 1, 51, "\nIngrese el apellido del pasajero: ", "\nERROR. Datos no validos.", 30);
+		utn_getNumeroFlotante(&newPassenger.price,"\nIngrese el precio del ticket (MAX $200.000, MIN $20.000): ","\nERROR. Datos no validos.", 20000, 200000, 30);
+		utn_getCadena(newPassenger.flycode, 1, 11, "\nIngrese el codigo del vuelo (hasta 10 caracteres): ","\nERROR. Datos no validos.", 30);
+		utn_getNumero(&newPassenger.typePassenger,"\nIngrese el tipo de pasajero (1.Infante 2.Adulto 3.Jubilado): ","\nERROR. Opcion incorrecta.",1, 3, 30);
 
-		if(addPassenger(list, len, newPassenger.id, newPassenger.name, newPassenger.lastName, newPassenger.price, newPassenger.typePassenger, newPassenger.flycode) != -1)
+		verifyPassenger = addPassenger(list, len, newPassenger.id, newPassenger.name, newPassenger.lastName, newPassenger.price, newPassenger.typePassenger, newPassenger.flycode);
+		if(verifyPassenger != -1)
 		{
 			puts("\nDatos cargados exitosamente.");
 			retorno = 0;
@@ -230,38 +232,43 @@ int modifyPassenger(Passenger *list, int len)
 	int retorno = -1;
 	int auxID;
 	int opcion;
-	int indice;
+	int index;
+	int verifyIndex;
 
 	printPassenger(list, len);
-	utn_getNumero(&auxID, "\nIngrese el id del pasajero que desea modificar: ","\nERROR. Opcion incorrecta.", 5000, 7000, 3);
+	verifyIndex = utn_getNumero(&auxID, "\nIngrese el id del pasajero que desea modificar: ","\nERROR. Opcion incorrecta.", 5000, 7000, 3);
 
-	indice = findPassengerById(list, len, auxID);
-	if (indice != -1)
+	if(verifyIndex == 0)
 	{
-		opcion = mostrarMenuModif();
-		switch (opcion)
+		index = findPassengerById(list, len, auxID);
+		if (index != -1)
 		{
-			case 1:
-				utn_getNombre(list[indice].name, 51, "\nIngrese el nombre del pasajero: ","\nERROR. Ingrese solamente letras. ", 3);
-				break;
-			case 2:
-				utn_getNombre(list[indice].lastName, 51, "\nIngrese el apellido del pasajero: ", "\nERROR. Ingrese solamente letras.", 3);
-				break;
-			case 3:
-				utn_getNumeroFlotante(&list[indice].price, "\nIngrese el precio del ticket (MAX $200.000, MIN $20.000): ", "\nERROR. Datos incorrectos.", 20000, 200000, 3);
-				break;
-			case 4:
-				utn_getCadena(list[indice].flycode, 10,"\nIngrese el codigo del vuelo (hasta 10 caracteres): ","\nERROR. Codigo incorrecto.", 3);
-				break;
-			case 5:
-				utn_getNumero(&list[indice].typePassenger,"\nIngrese el tipo de pasajero (1.Infante, 2.Adulto, 3.Jubilado): ", "\nERROR. Ingrese una opcion correcta.",1, 3, 3);
-				break;
-			case 6:
-				utn_getNumero(&list[indice].statusFlight,"\nIngrese el estado del vuelo (0.Inactivo, 1.Activo)\n","\nERROR. Ingrese una opcion correcta.\n", 1, 2, 3);
-		}
-		retorno = 0;
+			opcion = mostrarMenuModif();
+			switch (opcion)
+			{
+				case 1:
+					utn_getNombre(list[index].name, 1, 51, "\nIngrese el nombre del pasajero: ","\nERROR. Ingrese solamente letras. ", 3);
+					break;
+				case 2:
+					utn_getNombre(list[index].lastName, 1, 51, "\nIngrese el apellido del pasajero: ", "\nERROR. Ingrese solamente letras.", 3);
+					break;
+				case 3:
+					utn_getNumeroFlotante(&list[index].price, "\nIngrese el precio del ticket (MAX $200.000, MIN $20.000): ", "\nERROR. Datos incorrectos.", 20000, 200000, 3);
+					break;
+				case 4:
+					utn_getCadena(list[index].flycode, 1, 11,"\nIngrese el codigo del vuelo (hasta 10 caracteres): ","\nERROR. Codigo incorrecto.", 3);
+					break;
+				case 5:
+					utn_getNumero(&list[index].typePassenger,"\nIngrese el tipo de pasajero (1.Infante, 2.Adulto, 3.Jubilado): ", "\nERROR. Ingrese una opcion correcta.",1, 3, 3);
+					break;
+				case 6:
+					utn_getNumero(&list[index].statusFlight,"\nIngrese el estado del vuelo (0.Inactivo, 1.Activo)\n","\nERROR. Ingrese una opcion correcta.\n", 1, 2, 3);
+			}
+			retorno = 0;
 
+		}
 	}
+
 	else
 	{
 		printf("\nNo se pudo encontrar el ID especificado.");
@@ -284,6 +291,8 @@ void showPassengerData(Passenger list)
 			list.flycode, list.typePassenger, list.statusFlight);
 
 }
+
+
 
 int cargaForzada(Passenger list[], int len)
 {

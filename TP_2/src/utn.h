@@ -26,11 +26,11 @@ int getString(char *cadena, int len);
 
 int getCadena(char* pResultado, int longitud);
 
-int utn_getCadena(char *pResultado, int longitud, char *mensaje, char *mensajeError, int reintentos);
+int utn_getCadena(char* pResultado, int lenMin, int lenMax, char* mensaje, char* mensajeError, int reintentos);
 
 int getNombre(char* pResultado, int longitud);
 
-int utn_getNombre(char* pResultado, int longitud, char* mensaje, char* mensajeError, int reintentos);
+int utn_getNombre(char* pResultado, int longitudMin, int longitudMax, char* mensaje, char* mensajeError, int reintentos);
 
 int esNumerica(char *cadena, int len);
 
@@ -53,6 +53,8 @@ int cantidadPasajerosActivo(Passenger *list, int len);
 float calculateAverage(float suma, int cantidad);
 
 int aboveAverage(Passenger *list, int len, float promedio);
+
+int informeOrdenamiento(Passenger *list, int len, int order);
 
 int informePrecios(Passenger *list, int len);
 

@@ -83,8 +83,6 @@ int main(void) {
 						case 3:
 							informeFlyCodeAndStatus(listaDePasajeros,LEN_LIST_PASSENGERS);
 							break;
-						default:
-							printf("\nERROR. Opcion Incorrecta.");
 					}
 				}
 				break;
@@ -101,11 +99,9 @@ int main(void) {
 					printf("\nLa carga forzada ya fue realizada.\n");
 				}
 				break;
-			default:
-				printf("ERROR: Elija una opcion del 1 al 5: \n");
-				break;
 		}
 	}while (opcion != 6);
 
+	printf("\nPrograma terminado.");
 	return 0;
 }

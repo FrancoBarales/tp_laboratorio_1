@@ -55,17 +55,11 @@ int mostrarMenuInformes(void)
 	printf("1) Listado de pasajeros (por apellido y tipo de pasajero)\n");
 	printf("2) Informe de Precios\n");
 	printf("3) Listado de pasajeros (por Código de vuelo y estados de vuelos 'ACTIVOS')\n");
-	utn_getNumero(&opcion,"\nElegir opcion: ","\nERROR. Opcion Incorrecta.", 1, 6, 3);
+	utn_getNumero(&opcion,"\nElegir opcion: ","\nERROR. Opcion Incorrecta.", 1, 3, 3);
 	return opcion;
 }
 
 
-/**
- * \brief Obtien un numero entero
- * \param pResultado Puntero al espacio de memoria donde se dejara el resultado de la funcion
- * \return Retorna 0 (EXITO) si se obtiene un numero entero y -1 (ERROR) si no
- *
- */
 int getInt(int *pResultado)
 {
 	int retorno = -1;
@@ -74,16 +68,17 @@ int getInt(int *pResultado)
 	{
 		retorno = 0;
 		*pResultado = atoi(bufferString);
-
 	}
 	return retorno;
 }
 
 
-int utn_getNumero(int *pResultado, char *mensaje, char *mensajeError, int minimo, int maximo, int reintentos) {
+int utn_getNumero(int *pResultado, char *mensaje, char *mensajeError, int minimo, int maximo, int reintentos)
+{
 	int retorno = -1;
 	int bufferInt;
-	do {
+	do
+	{
 		printf("%s", mensaje);
 		if (getInt(&bufferInt) == 0 && bufferInt >= minimo && bufferInt <= maximo)
 		{
@@ -176,7 +171,7 @@ int getCadena(char* pResultado, int longitud)
     return retorno;
 }
 
-int utn_getCadena(char *pResultado, int longitud, char *mensaje, char *mensajeError, int reintentos)
+int utn_getCadena(char* pResultado, int lenMin, int lenMax, char* mensaje, char* mensajeError, int reintentos)
 {
 	char bufferString[4096];
 	int retorno = -1;
@@ -184,9 +179,9 @@ int utn_getCadena(char *pResultado, int longitud, char *mensaje, char *mensajeEr
 	{
 		reintentos--;
 		printf("%s", mensaje);
-		if (getCadena(bufferString, sizeof(bufferString)) == 0 && strnlen(bufferString, sizeof(bufferString)) < longitud)
+		if (getCadena(bufferString, sizeof(bufferString)) == 0 && strnlen(bufferString, sizeof(bufferString)) < lenMax && strnlen(bufferString, sizeof(bufferString)) > lenMin)
 		{
-			strncpy(pResultado, bufferString, longitud);
+			strncpy(pResultado, bufferString, lenMax);
 			retorno = 0;
 			break;
 		}
@@ -195,7 +190,8 @@ int utn_getCadena(char *pResultado, int longitud, char *mensaje, char *mensajeEr
 	return retorno;
 }
 
-int getNombre(char* pResultado, int len){
+int getNombre(char* pResultado, int len)
+{
     int retorno=-1;
     char buffer[4096];
 
@@ -209,7 +205,7 @@ int getNombre(char* pResultado, int len){
     return retorno;
 }
 
-int utn_getNombre(char* pResultado, int longitud, char* mensaje, char* mensajeError, int reintentos)
+int utn_getNombre(char* pResultado, int lenMin, int lenMax, char* mensaje, char* mensajeError, int reintentos)
 {
 	char bufferString[4096];
 	int retorno = -1;
@@ -217,10 +213,10 @@ int utn_getNombre(char* pResultado, int longitud, char* mensaje, char* mensajeEr
 	{
 		reintentos--;
 		printf("%s", mensaje);
-		if(getNombre(bufferString, sizeof(bufferString)) == 0 && strnlen(bufferString, sizeof(bufferString)) < longitud)
+		if(getNombre(bufferString, sizeof(bufferString)) == 0 && strnlen(bufferString, sizeof(bufferString)) < lenMax && strnlen(bufferString, sizeof(bufferString)) > lenMin)
 		{
 			uppercaseInitial(bufferString);
-			strncpy(pResultado, bufferString, longitud);
+			strncpy(pResultado, bufferString, lenMax);
 			retorno = 0;
 			break;
 		}
@@ -420,6 +416,8 @@ int aboveAverage(Passenger *list, int len, float promedio)
 	return retorno;
 }
 
+
+
 int informePrecios(Passenger *list, int len)
 {
 	int retorno = -1;
@@ -434,7 +432,7 @@ int informePrecios(Passenger *list, int len)
 		promedio = calculateAverage(suma, amountOfPassengers);
 
 		printf("\nEl total de los pasajes fue: $%.2f.", suma);
-		printf("\nEl promedio de los pasajes fue: $%.2f.", promedio);
+		printf("\nEl precio promedio de los pasajes es: $%.2f.", promedio);
 		if (promedio > 0)
 		{
 			aboveAvgPassenger = aboveAverage(list, len, promedio);
