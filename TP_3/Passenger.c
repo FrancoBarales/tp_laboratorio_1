@@ -16,6 +16,14 @@
 #include "menus.h"
 #include "utn.h"
 
+
+// --------------------------------------------FUNCIONES DE NUEVO PASAJERO---------------------------------------------------------------
+
+/** \brief Asigna espacio en la memoria para un nuevo pasajero.
+ *
+ * \param estadoVuelo char*
+ * \return Retorna un puntero al espacio asignado en memoria.
+ */
 Passenger* Passenger_new()
 {
 	Passenger* pUnPasajero;
@@ -23,6 +31,17 @@ Passenger* Passenger_new()
 	return pUnPasajero;
 }
 
+/** \brief Asigna espacio en la memoria para un nuevo pasajero y sus parametros.
+ *
+ * \param idStr char*
+ * \param nombreStr char*
+ * \param apellidoStr char*
+ * \param precioStr char*
+ * \param codigoVueloStr char*
+ * \param tipoPasajeroStr char*
+ * \param estadoVueloStr char*
+ * \return Retorna un puntero al espacio asignado en memoria
+ */
 Passenger* Passenger_newParametros(char* idStr, char* nombreStr, char* apellidoStr, char* precioStr, char* codigoVueloStr, char* tipoPasajeroStr, char* estadoVueloStr)
 {
 	int auxIdStr;
@@ -55,11 +74,20 @@ Passenger* Passenger_newParametros(char* idStr, char* nombreStr, char* apellidoS
 }
 
 
+// --------------------------------------------BUSQUEDA DE DATOS---------------------------------------------------------------
+
+
+/** \brief Busca el pasajero por el id dentro de la lista
+ *
+ * \param listaPasajeros LinkedList*
+ * \param id int
+ * \return Retorna -1 si no se encuentra el pasajero; si se lo encuentra, retorna el id
+ */
 int Passenger_encontrarID(LinkedList* listaPasajeros, int id)
 {
 	int len;
 	int index;
-	Passenger* auxiliar;
+	Passenger* auxPasajero;
 
 	if(listaPasajeros!=NULL)
 	{
@@ -69,8 +97,8 @@ int Passenger_encontrarID(LinkedList* listaPasajeros, int id)
 		{
 			for(int i = 0; i < len; i++)
 			{
-				auxiliar = (Passenger*)ll_get(listaPasajeros,i);
-				if(auxiliar->id == id)
+				auxPasajero = (Passenger*)ll_get(listaPasajeros,i);
+				if(auxPasajero->id == id)
 				{
 					index = i;
 					break;
@@ -82,6 +110,11 @@ int Passenger_encontrarID(LinkedList* listaPasajeros, int id)
 	return index;
 }
 
+/** \brief Devuelve el id mas grande de la lista
+ *
+ * \param listaPasajeros LinkedList*
+ * \return Retorna el id mas grande de la lista
+ */
 int Passenger_encontrarUltimoID(LinkedList* listaPasajeros)
 {
 	int auxId;
@@ -106,6 +139,15 @@ int Passenger_encontrarUltimoID(LinkedList* listaPasajeros)
 	return lastId;
 }
 
+
+// --------------------------------------------FUNCIONES BORRAR PASAJERO---------------------------------------------------------------
+
+
+/** \brief Libera el espacio en memoria de un pasajero a borrar
+ *
+ * \param this Passenger*
+ * \return void
+ */
 void Passenger_delete(Passenger* this)
 {
 	if(this!=NULL)
@@ -115,17 +157,22 @@ void Passenger_delete(Passenger* this)
 	}
 }
 
-void Passenger_deleteAll(LinkedList* pArrayListPassenger)
+/** \brief Libera el espacio en memoria que ocupan todos los pasajeros de la lista
+ *
+ * \param listaPasajeros LinkedList*
+ * \return void
+ */
+void Passenger_deleteAll(LinkedList* listaPasajeros)
 {
 	int len;
 	Passenger* auxPasajero = NULL;
 
-	if(pArrayListPassenger != NULL)
+	if(listaPasajeros != NULL)
 	{
-		len = ll_len(pArrayListPassenger);
+		len = ll_len(listaPasajeros);
 		for(int i = 0; i < len; i++)
 		{
-			auxPasajero = (Passenger*)ll_get(pArrayListPassenger, i);
+			auxPasajero = (Passenger*)ll_get(listaPasajeros, i);
 			if(auxPasajero != NULL)
 			{
 				Passenger_delete(auxPasajero);
@@ -134,6 +181,16 @@ void Passenger_deleteAll(LinkedList* pArrayListPassenger)
 	}
 }
 
+
+// --------------------------------------------EDITAR PASAJERO---------------------------------------------------------------
+
+
+
+/** \brief Modifica los datos de un pasajero de la lista.
+ *
+ * \param listaPasajeros LinkedList*
+ * \return Retorna 0 si la modificacion fue exitosa, o -1 si no lo fue
+ */
 int Passenger_edit(LinkedList* listaPasajeros)
 {
 	int retorno = -1;
@@ -220,6 +277,16 @@ int Passenger_edit(LinkedList* listaPasajeros)
 	return retorno;
 }
 
+
+// -----------------------------------------FUNCIONES ORDENAR PASAJEROS-----------------------------------------------------------
+
+
+
+/** \brief Ordena los datos de la lista con un orden determinado
+ *
+ * \param listaPasajeros LinkedList*
+ * \return Retorna 0 si el ordenamiento fue exitoso, o -1 si no lo fue
+ */
 int Passenger_sort(LinkedList* listaPasajeros)
 {
 	int retorno = -1;
@@ -299,6 +366,11 @@ int Passenger_sort(LinkedList* listaPasajeros)
 	return retorno;
 }
 
+/** \brief Compara dos IDs, y determina cual es mas grande.
+ *
+ * \param listaPasajeros LinkedList*
+ * \return Retorna 1 si el idUno es mas grande, o -1 si el idDos es mas grande.
+ */
 int Passenger_sortById(void* primerPasajero, void* segundoPasajero)
 {
 	int retorno = 0;
@@ -326,6 +398,11 @@ int Passenger_sortById(void* primerPasajero, void* segundoPasajero)
 	return retorno;
 }
 
+/** \brief Compara dos nombres, y determina cual va primero alfabeticamente.
+ *
+ * \param listaPasajeros LinkedList*
+ * \return Retorna 1 si el nombreUno va primero, -1 si el nombreDos va primero, o 0 si los nombres son iguales.
+ */
 int Passenger_sortByNombre(void* primerPasajero, void* segundoPasajero)
 {
 	int retorno = 0;
@@ -352,6 +429,11 @@ int Passenger_sortByNombre(void* primerPasajero, void* segundoPasajero)
 	return retorno;
 }
 
+/** \brief Compara dos apellidos, y determina cual va primero alfabeticamente.
+ *
+ * \param listaPasajeros LinkedList*
+ * \return Retorna 1 si el apellidoUno va primero, -1 si el apellidoDos va primero, o 0 si los apellidos son iguales.
+ */
 int Passenger_sortByApellido(void* primerPasajero, void* segundoPasajero)
 {
 	int retorno = 0;
@@ -379,6 +461,11 @@ int Passenger_sortByApellido(void* primerPasajero, void* segundoPasajero)
 	return retorno;
 }
 
+/** \brief Compara dos precios, y determina cual es mas grande
+ *
+ * \param listaPasajeros LinkedList*
+ * \return Retorna 1 si el precioUno es mas grande, o -1 si el precioDos es mas grande, o 0 si los precios son iguales.
+ */
 int Passenger_sortByPrecio(void* primerPasajero, void* segundoPasajero)
 {
 	int retorno = 0;
@@ -405,6 +492,11 @@ int Passenger_sortByPrecio(void* primerPasajero, void* segundoPasajero)
 	return retorno;
 }
 
+/** \brief Compara dos codigos de vuelo, y determina cual va primero alfabeticamente.
+ *
+ * \param listaPasajeros LinkedList*
+ * \return Retorna 1 si el codigoVueloUno va primero, -1 si el codigoVueloDos va primero, o 0 si los codigos de vuelo son iguales.
+ */
 int Passenger_sortByCodigoVuelo(void* primerPasajero, void* segundoPasajero)
 {
 	int retorno = 0;
@@ -432,6 +524,11 @@ int Passenger_sortByCodigoVuelo(void* primerPasajero, void* segundoPasajero)
 	return retorno;
 }
 
+/** \brief Compara dos tipos de pasajero, y determina cual va primero alfabeticamente.
+ *
+ * \param listaPasajeros LinkedList*
+ * \return Retorna 1 si el tipoPasajeroUno va primero, -1 si el tipoPasajeroDos va primero, o 0 si los tipos de pasajero son iguales.
+ */
 int Passenger_sortByTipoPasajero(void* primerPasajero, void* segundoPasajero)
 {
 	int retorno = 0;
@@ -458,6 +555,11 @@ int Passenger_sortByTipoPasajero(void* primerPasajero, void* segundoPasajero)
 	return retorno;
 }
 
+/** \brief Compara dos estados de vuelo, y determina cual va primero alfabeticamente.
+ *
+ * \param listaPasajeros LinkedList*
+ * \return Retorna 1 si el estadoVueloUno va primero, -1 si el estadoVueloDos va primero, o 0 si los estados de vuelo son iguales.
+ */
 int Passenger_sortByEstadoVuelo(void* primerPasajero, void* segundoPasajero)
 {
 	int retorno = 0;
@@ -484,6 +586,13 @@ int Passenger_sortByEstadoVuelo(void* primerPasajero, void* segundoPasajero)
 	return retorno;
 }
 
+// -------------------------------------------------MUESTRA DE DATOS---------------------------------------------------------------
+
+
+/** \brief Muestra en la consola la cabecera de la lista.
+ *
+ * \return void
+ */
 void printListHeader()
 {
 	printf("+--------------------------------------------------------------------------------------------------------+");
@@ -491,7 +600,13 @@ void printListHeader()
 	printf("+-----+----------------+----------------+-------------+----------------+-----------------+---------------+\n");
 }
 
-int Passenger_printPassenger(LinkedList* pArrayListPassenger, int index)
+/** \brief Muestra en la consola los datos de un pasajero,
+ *
+ * \param listaPasajeros LinkedList*
+ * \param index int
+ * \return Retorna 0 si el proceso se realizo con exito, o -1 si hubo un error.
+ */
+int Passenger_printPassenger(LinkedList* listaPasajeros, int index)
 {
 	int retorno = -1;
 	int id;
@@ -505,9 +620,9 @@ int Passenger_printPassenger(LinkedList* pArrayListPassenger, int index)
 	char auxEstadoVuelo[128];
 	Passenger* auxPasajero = NULL;
 
-	if(pArrayListPassenger != NULL)
+	if(listaPasajeros != NULL)
 	{
-		auxPasajero = (Passenger*)ll_get(pArrayListPassenger, index);
+		auxPasajero = (Passenger*)ll_get(listaPasajeros, index);
 		Passenger_getId(auxPasajero, &id);
 		Passenger_getNombre(auxPasajero, nombre);
 		Passenger_getApellido(auxPasajero, apellido);
@@ -525,6 +640,18 @@ int Passenger_printPassenger(LinkedList* pArrayListPassenger, int index)
 	return retorno;
 }
 
+
+
+// --------------------------------------------CONVERSORES DE DATOS---------------------------------------------------------------
+
+
+
+/** \brief Convierte el tipo de pasajero de un int a un string
+ *
+ * \param tipoPasajeroInt int
+ * \param tipoPasajero char*
+ * \return Retorna 0 si el proceso se realizo con exito, o -1 si hubo un error.
+ */
 int Passenger_TipoPasajeroAChar(int tipoPasajeroInt, char* tipoPasajero)
 {
 	int retorno = -1;
@@ -548,6 +675,11 @@ int Passenger_TipoPasajeroAChar(int tipoPasajeroInt, char* tipoPasajero)
 	return retorno;
 }
 
+/** \brief Convierte el tipo de pasajero de un string a un int
+ *
+ * \param tipoPasajero char*
+ * \return Retorna 0 si el proceso se realizo con exito, o -1 si hubo un error.
+ */
 int Passenger_TipoPasajeroAInt(char* tipoPasajero)
 {
 	int auxTypePassenger;
@@ -578,6 +710,12 @@ int Passenger_TipoPasajeroAInt(char* tipoPasajero)
 	return auxTypePassenger;
 }
 
+/** \brief Convierte el estado de vuelo de un int a un string
+ *
+ * \param estadoVueloInt int
+ * \param estadoVuelo char*
+ * \return Retorna 0 si el proceso se realizo con exito, o -1 si hubo un error.
+ */
 int Passenger_EstadoVueloAChar(int estadoVueloInt, char* estadoVuelo)
 {
 	int retorno = -1;
@@ -605,6 +743,11 @@ int Passenger_EstadoVueloAChar(int estadoVueloInt, char* estadoVuelo)
 	return retorno;
 }
 
+/** \brief Convierte el estado de vuelo de un string a un int
+ *
+ * \param estadoVuelo char*
+ * \return Retorna 0 si el proceso se realizo con exito, o -1 si hubo un error.
+ */
 int Passenger_EstadoVueloAInt(char* estadoVuelo)
 {
 	int auxEstadoVuelo;
@@ -644,7 +787,15 @@ int Passenger_EstadoVueloAInt(char* estadoVuelo)
 }
 
 
+// --------------------------------------------GETTERS y SETTERS---------------------------------------------------------------
 
+
+/** \brief Metodo set ID
+ *
+ * \param this Passenger*
+ * \param id int
+ * \return Retorna 0 si el proceso se realizo con exito, o -1 si hubo un error.
+ */
 int Passenger_setId(Passenger* this,int id)
 {
 	int retorno = -1;
@@ -658,6 +809,12 @@ int Passenger_setId(Passenger* this,int id)
 	return retorno;
 }
 
+/** \brief Metodo get ID
+ *
+ * \param this Passenger*
+ * \param id int
+ * \return Retorna 0 si el proceso se realizo con exito, o -1 si hubo un error.
+ */
 int Passenger_getId(Passenger* this,int* id)
 {
 	int retorno = -1;
@@ -671,6 +828,12 @@ int Passenger_getId(Passenger* this,int* id)
 	return retorno;
 }
 
+/** \brief Metodo set nombre
+ *
+ * \param this Passenger*
+ * \param nombre char*
+ * \return Retorna 0 si el proceso se realizo con exito, o -1 si hubo un error.
+ */
 int Passenger_setNombre(Passenger* this,char* nombre)
 {
 	int retorno = -1;
@@ -684,6 +847,12 @@ int Passenger_setNombre(Passenger* this,char* nombre)
 	return retorno;
 }
 
+/** \brief Metodo get nombre
+ *
+ * \param this Passenger*
+ * \param nombre char*
+ * \return Retorna 0 si el proceso se realizo con exito, o -1 si hubo un error.
+ */
 int Passenger_getNombre(Passenger* this,char* nombre)
 {
 	int retorno = -1;
@@ -697,6 +866,12 @@ int Passenger_getNombre(Passenger* this,char* nombre)
 	return retorno;
 }
 
+/** \brief Metodo set apellido
+ *
+ * \param this Passenger*
+ * \param apellido char*
+ * \return Retorna 0 si el proceso se realizo con exito, o -1 si hubo un error.
+ */
 int Passenger_setApellido(Passenger* this,char* apellido)
 {
 	int retorno = -1;
@@ -710,6 +885,12 @@ int Passenger_setApellido(Passenger* this,char* apellido)
 	return retorno;
 }
 
+/** \brief Metodo get apellido
+ *
+ * \param this Passenger*
+ * \param apellido char*
+ * \return Retorna 0 si el proceso se realizo con exito, o -1 si hubo un error.
+ */
 int Passenger_getApellido(Passenger* this,char* apellido)
 {
 	int retorno = -1;
@@ -723,6 +904,12 @@ int Passenger_getApellido(Passenger* this,char* apellido)
 	return retorno;
 }
 
+/** \brief Metodo set precio
+ *
+ * \param this Passenger*
+ * \param precio float
+ * \return Retorna 0 si el proceso se realizo con exito, o -1 si hubo un error.
+ */
 int Passenger_setPrecio(Passenger* this, float precio)
 {
 	int retorno = -1;
@@ -736,6 +923,12 @@ int Passenger_setPrecio(Passenger* this, float precio)
 	return retorno;
 }
 
+/** \brief Metodo get precio
+ *
+ * \param this Passenger*
+ * \param precio float
+ * \return Retorna 0 si el proceso se realizo con exito, o -1 si hubo un error.
+ */
 int Passenger_getPrecio(Passenger* this, float* precio)
 {
 	int retorno = -1;
@@ -749,6 +942,12 @@ int Passenger_getPrecio(Passenger* this, float* precio)
 	return retorno;
 }
 
+/** \brief Metodo set tipoPasajero
+ *
+ * \param this Passenger*
+ * \param tipoPasajero int
+ * \return Retorna 0 si el proceso se realizo con exito, o -1 si hubo un error.
+ */
 int Passenger_setTipoPasajero(Passenger* this, int tipoPasajero)
 {
 	int retorno = -1;
@@ -762,6 +961,12 @@ int Passenger_setTipoPasajero(Passenger* this, int tipoPasajero)
 	return retorno;
 }
 
+/** \brief Metodo get tipoPasajero
+ *
+ * \param this Passenger*
+ * \param tipoPasajero int
+ * \return Retorna 0 si el proceso se realizo con exito, o -1 si hubo un error.
+ */
 int Passenger_getTipoPasajero(Passenger* this, int* tipoPasajero)
 {
 	int retorno = -1;
@@ -775,7 +980,13 @@ int Passenger_getTipoPasajero(Passenger* this, int* tipoPasajero)
 	return retorno;
 }
 
-int Passenger_setCodigoVuelo(Passenger* this,char* codigoVuelo)
+/** \brief Metodo set codigoVuelo
+ *
+ * \param this Passenger*
+ * \param codigoVuelo char*
+ * \return Retorna 0 si el proceso se realizo con exito, o -1 si hubo un error.
+ */
+int Passenger_setCodigoVuelo(Passenger* this, char* codigoVuelo)
 {
 	int retorno = -1;
 
@@ -788,7 +999,13 @@ int Passenger_setCodigoVuelo(Passenger* this,char* codigoVuelo)
 	return retorno;
 }
 
-int Passenger_getCodigoVuelo(Passenger* this,char* codigoVuelo)
+/** \brief Metodo get codigoVuelo
+ *
+ * \param this Passenger*
+ * \param codigoVuelo char*
+ * \return Retorna 0 si el proceso se realizo con exito, o -1 si hubo un error.
+ */
+int Passenger_getCodigoVuelo(Passenger* this, char* codigoVuelo)
 {
 	int retorno = -1;
 
@@ -801,6 +1018,12 @@ int Passenger_getCodigoVuelo(Passenger* this,char* codigoVuelo)
 	return retorno;
 }
 
+/** \brief Metodo set estadoVuelo
+ *
+ * \param this Passenger*
+ * \param codigoVuelo int
+ * \return Retorna 0 si el proceso se realizo con exito, o -1 si hubo un error.
+ */
 int Passenger_setEstadoVuelo(Passenger* this,int estadoVuelo)
 {
 	int retorno = -1;
@@ -814,6 +1037,12 @@ int Passenger_setEstadoVuelo(Passenger* this,int estadoVuelo)
 	return retorno;
 }
 
+/** \brief Metodo get estadoVuelo
+ *
+ * \param this Passenger*
+ * \param estadoVuelo int*
+ * \return Retorna 0 si el proceso se realizo con exito, o -1 si hubo un error.
+ */
 int Passenger_getEstadoVuelo(Passenger* this,int* estadoVuelo)
 {
 	int retorno = -1;

@@ -24,8 +24,11 @@ struct
 Passenger* Passenger_new();
 Passenger* Passenger_newParametros(char* idStr,char* nombreStr,char* apellidoStr,char* precioStr,char* codigoVueloStr,char* tipoPasajeroStr,char* estadoVueloStr);
 
+int Passenger_encontrarID(LinkedList* listaPasajeros, int id);
+int Passenger_encontrarUltimoID(LinkedList* listaPasajeros);
+
 void Passenger_delete();
-void Passenger_deleteAll(LinkedList* pArrayListPassenger);
+void Passenger_deleteAll(LinkedList* listaPasajeros);
 
 int Passenger_edit(LinkedList* listaPasajeros);
 int Passenger_sort(LinkedList* listaPasajeros);
@@ -38,15 +41,12 @@ int Passenger_sortByTipoPasajero(void* primerPasajero, void* segundoPasajero);
 int Passenger_sortByEstadoVuelo(void* primerPasajero, void* segundoPasajero);
 
 void printListHeader();
-int Passenger_printPassenger(LinkedList* pArrayListPassenger, int index);
+int Passenger_printPassenger(LinkedList* listaPasajeros, int index);
 
 int Passenger_TipoPasajeroAChar(int tipoPasajeroInt, char tipoPasajero[]);
 int Passenger_TipoPasajeroAInt(char* tipoPasajero);
 int Passenger_EstadoVueloAChar(int estadoVueloInt, char estadoVuelo[]);
 int Passenger_EstadoVueloAInt(char* estadoVuelo);
-
-int Passenger_encontrarID(LinkedList* listaPasajeros, int id);
-int Passenger_encontrarUltimoID(LinkedList* listaPasajeros);
 
 int Passenger_setId(Passenger* this,int id);
 int Passenger_getId(Passenger* this,int* id);
