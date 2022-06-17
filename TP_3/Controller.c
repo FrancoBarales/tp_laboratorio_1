@@ -236,6 +236,7 @@ int controller_ListPassenger(LinkedList* pArrayListPassenger)
 
 			retorno = 0;
 		}
+		printf("+-----+----------------+----------------+-------------+----------------+-----------------+---------------+\n");
 	}
     return retorno;
 }
@@ -255,35 +256,6 @@ int controller_sortPassenger(LinkedList* pArrayListPassenger)
 	{
 		Passenger_sort(pArrayListPassenger);
 		retorno = 0;
-	}
-	return retorno;
-}
-/*  \brief Busca el pasajero por el id dentro de la lista
- *
- * 	\param pArrayListPassenger
- * 	\param idBuscado
- *  \return Retorna -1 si no econtro al pasajero o el id si lo encontro
- */
-int controller_findPassengerById(LinkedList* pArrayListPassenger, int idABuscar){
-
-	int retorno = -1;
-	int auxID;
-	int len;
-	Passenger* auxPasajero = NULL;
-
-	len = ll_len(pArrayListPassenger);
-
-	if(pArrayListPassenger != NULL && idABuscar >= 0)
-	{
-		for(int i = 0; i < len; i++)
-		{
-			auxPasajero = (Passenger*)ll_get(pArrayListPassenger, i);
-			if(!Passenger_getId(auxPasajero, &auxID) && auxID == idABuscar)
-			{
-				retorno = i;
-				break;
-			}
-		}
 	}
 	return retorno;
 }

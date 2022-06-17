@@ -8,6 +8,7 @@
 		<item key="isRegEx" value="false"/>
 		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="controller_findPassengerById"/>
 			<item value="?"/>
 			<item value="addpassenger"/>
 			<item value="menu_PassengerOrder"/>
@@ -22,7 +23,6 @@
 			<item value="printListHeader"/>
 			<item value="listTitle"/>
 			<item value="demorado"/>
-			<item value="Passenger_newParametros"/>
 		</list>
 		<list key="replacehistory">
 			<item value="retorno"/>

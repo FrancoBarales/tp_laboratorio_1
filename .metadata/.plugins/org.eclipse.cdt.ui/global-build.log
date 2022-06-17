@@ -1,8 +1,4 @@
-17:49:21 **** Incremental Build of configuration Debug for project TP_3 ****
+20:43:55 **** Incremental Build of configuration Debug for project TP_3 ****
 Info: Internal Builder is used for build
-gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Passenger.o "..\\Passenger.c" 
-gcc -O0 -g3 -Wall -c -fmessage-length=0 -o main.o "..\\main.c" 
 gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Controller.o "..\\Controller.c" 
-gcc -O0 -g3 -Wall -c -fmessage-length=0 -o menus.o "..\\menus.c" 
-gcc -O0 -g3 -Wall -c -fmessage-length=0 -o parser.o "..\\parser.c" 
 gcc "-LE:\\tp_laboratorio_1\\TP_3" -o TP_3.exe Controller.o Passenger.o main.o menus.o parser.o utn.o -lLinkedList 
