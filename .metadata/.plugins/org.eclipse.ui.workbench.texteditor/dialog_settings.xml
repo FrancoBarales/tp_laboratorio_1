@@ -6,32 +6,34 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Listado "/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
-			<item value="listado "/>
-			<item value="findfreespace"/>
-			<item value="esNumerica"/>
-			<item value="uppercase"/>
-			<item value="cantidadPasajeros"/>
-			<item value="{"/>
-			<item value="inactivo"/>
-			<item value="getCadena"/>
-			<item value="generarID"/>
-			<item value="getNombre"/>
-			<item value="showpassenger"/>
-			<item value="verifica"/>
-			<item value="status"/>
-			<item value="activo"/>
-			<item value="buscarIndexPor"/>
+			<item value="?"/>
+			<item value="addpassenger"/>
+			<item value="menu_PassengerOrder"/>
+			<item value="menu_ModifyPassenger"/>
+			<item value="printpassenger"/>
+			<item value="printPassenger"/>
+			<item value="controller_ListPassenger"/>
+			<item value="listpassenger"/>
+			<item value="deleteall"/>
+			<item value="getcadena"/>
+			<item value="indice"/>
+			<item value="printListHeader"/>
+			<item value="listTitle"/>
+			<item value="demorado"/>
+			<item value="Passenger_newParametros"/>
 		</list>
 		<list key="replacehistory">
+			<item value="retorno"/>
+			<item value=""/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1054"/>
-		<item key="DIALOG_Y_ORIGIN" value="529"/>
+		<item key="DIALOG_X_ORIGIN" value="957"/>
+		<item key="DIALOG_Y_ORIGIN" value="266"/>
 		<item key="DIALOG_WIDTH" value="322"/>
-		<item key="DIALOG_HEIGHT" value="391"/>
+		<item key="DIALOG_HEIGHT" value="436"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 	</section>
 </section>

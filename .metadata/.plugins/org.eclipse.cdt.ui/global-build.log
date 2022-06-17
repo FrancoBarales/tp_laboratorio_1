@@ -1,5 +1,9 @@
-14:20:06 **** Incremental Build of configuration Debug for project TP_2 ****
+12:15:19 **** Rebuild of configuration Debug for project TP_3 ****
 Info: Internal Builder is used for build
-gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\TP_2.o" "..\\src\\TP_2.c" 
-gcc -o TP_2.exe "src\\ArrayPassenger.o" "src\\TP_2.o" "src\\utn.o" 
-Info: Nothing to build for TP_2
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o main.o "..\\main.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o utn.o "..\\utn.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o menus.o "..\\menus.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Controller.o "..\\Controller.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o parser.o "..\\parser.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Passenger.o "..\\Passenger.c" 
+gcc "-LE:\\tp_laboratorio_1\\TP_3" -o TP_3.exe Controller.o Passenger.o main.o menus.o parser.o utn.o -lLinkedList 
