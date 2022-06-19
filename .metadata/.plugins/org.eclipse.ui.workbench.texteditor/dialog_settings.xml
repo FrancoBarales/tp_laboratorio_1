@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="tam"/>
 		<list key="findhistory">
+			<item value="tam"/>
 			<item value="controller_findPassengerById"/>
 			<item value="?"/>
 			<item value="addpassenger"/>
@@ -22,7 +23,6 @@
 			<item value="indice"/>
 			<item value="printListHeader"/>
 			<item value="listTitle"/>
-			<item value="demorado"/>
 		</list>
 		<list key="replacehistory">
 			<item value="retorno"/>
