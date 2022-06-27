@@ -39,11 +39,21 @@ int initPassengers(Passenger* list, int len);
 * \param lastName[] char
 * \param price float
 * \param typePassenger int
+* \param statusFlight int
 * \param flycode[] char
 * \return int Return (-1) if Error [Invalid length or NULL pointer or without
 free space] - (0) if Ok*/
 
-int addPassenger(Passenger* list, int len, int id, char name[], char lastName[], float price, int typePassenger, char flycode[]);
+int addPassenger(Passenger *list, int len, int id, char name[], char lastName[], float price, int typePassenger, int statusFlight, char flycode[])
+
+/** \brief loads the passenger data to the list.
+* \param list passenger*
+* \param len int
+* \param contadorId int
+* \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+*/
+
+int loadPassenger(Passenger *list, int len, int contadorId);
 
 /** \brief find a Passenger by Id en returns the index position in array.
 *
@@ -66,6 +76,17 @@ find a passenger] - (0) if Ok
 */
 
 int removePassenger(Passenger* list, int len, int id);
+
+/** \brief Remove a Passenger from the list
+*
+* \param list Passenger*
+* \param len int
+* \param id int
+* \return int Return (-1) if Error [Invalid length or NULL pointer or if can't
+find a passenger] - (0) if Ok
+*/
+
+int deletePassenger(Passenger *list, int len);
 
 /** \brief Sort the elements in the array of passengers, the argument order
 indicate UP or DOWN order
@@ -94,32 +115,20 @@ int printPassenger(Passenger *list, int length);
 * \return the index that meets the requirements
 */
 
-int buscarIndexPorIsEmpty(Passenger list[], int len);
-
-/** \brief To load the passenger data in a list index
-* \param list Passenger* Pointer to array of passenger
-* \param len int Array length
-* \return int Return (-1) if Error - (0) if Ok
-*/
-
-int loadPassengerData(Passenger *list, int len);
+int buscarEspacioVacio(Passenger list, int len);
 
 /** \brief To modify the passenger data in a list index
 * \param list Passenger* Pointer to array of passenger
 * \param len int Array length
+* \param contadorId int Id number
 * \return int Return (-1) if Error - (0) if Ok
 */
 
 int modifyPassenger(Passenger *list, int len);
 
-/** \brief increments the assigned id by 1
-* \return int id
-*/
-
-int incrementarId(void);
-
-/** \brief to show the selected passenger data
-* \param list Passenger* Pointer to array of passenger
+/** \brief print the content of one passenger
+*
+* \param list Passenger*
 * \return void
 */
 
