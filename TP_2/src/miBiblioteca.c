@@ -19,7 +19,7 @@
 int menu_principal(void)
 {
 	int opcion;
-	printf("\nMenu de Opciones\n");
+	printf("\nMenu Principal\n");
 	printf("\n1) Agregar pasajero");
 	printf("\n2) Modificar pasajero");
 	printf("\n3) Eliminar pasajero");
