@@ -10,7 +10,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "ArrayPassenger.h"
-#include "menus.h"
+#include "miBiblioteca.h"
 #include "utn.h"
 
 #define VACIO 0
