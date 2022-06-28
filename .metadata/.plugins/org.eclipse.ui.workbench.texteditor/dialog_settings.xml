@@ -6,23 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="ListPassenger"/>
+		<item key="selection" value="TipoPasajeroA"/>
 		<list key="findhistory">
+			<item value="tipopasajeroA"/>
+			<item value="print"/>
+			<item value="Passenger_TipoPasajeroAChar"/>
+			<item value="printPassenger"/>
+			<item value="printpassenger"/>
+			<item value="buscarespaciovacio"/>
+			<item value="inicializarEntidades"/>
+			<item value="buscarespacio"/>
+			<item value="printPassengerByCode"/>
+			<item value="ordenarAlfabeticamenteZaA"/>
+			<item value="buffer"/>
+			<item value="modify"/>
+			<item value="contadorId"/>
+			<item value="NAMES_LEN"/>
 			<item value="listpassenger"/>
-			<item value="contar"/>
-			<item value="tipoPasajero"/>
-			<item value="getTipo"/>
-			<item value="get"/>
-			<item value="passenger"/>
-			<item value="sort"/>
-			<item value="controller_loadFromText"/>
-			<item value="menu"/>
-			<item value="TRUE"/>
-			<item value="FALSE"/>
-			<item value="tam"/>
-			<item value="controller_findPassengerById"/>
-			<item value="?"/>
-			<item value="addpassenger"/>
 		</list>
 		<list key="replacehistory">
 			<item value="retorno"/>

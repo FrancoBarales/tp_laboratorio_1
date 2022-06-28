@@ -12,6 +12,12 @@ int menu_principal(void);
 
 int menu_modificaciones(Passenger* list, int index, int buffer);
 
+int buscarEspacioVacio(Passenger* list, int len);
+
+int comprobacionListaVacia(Passenger* list, int len);
+
+int calcularMayorId(int id[], int len);
+
 float calcularPrecioTotal(Passenger* list, int len);
 
 float calcularPromedio(Passenger* list, int len, float total);

@@ -44,7 +44,7 @@ int initPassengers(Passenger* list, int len);
 * \return int Return (-1) if Error [Invalid length or NULL pointer or without
 free space] - (0) if Ok*/
 
-int addPassenger(Passenger *list, int len, int id, char name[], char lastName[], float price, int typePassenger, int statusFlight, char flycode[])
+int addPassenger(Passenger *list, int len, int id, char name[], char lastName[], float price, int typePassenger, int statusFlight, char flycode[]);
 
 /** \brief loads the passenger data to the list.
 * \param list passenger*
@@ -99,6 +99,13 @@ indicate UP or DOWN order
 
 int sortPassengers(Passenger* list, int len, int order);
 
+/** \brief print the list header
+*
+* \return void
+*/
+
+void printListHeader(void);
+
 /** \brief print the content of passengers array
 *
 * \param list Passenger*
@@ -107,15 +114,6 @@ int sortPassengers(Passenger* list, int len, int order);
 */
 
 int printPassenger(Passenger *list, int length);
-
-/** \brief looks for the first index of the list[] that has the value 0 in the isEmpty field
-*
-* \param list Passenger*
-* \param len int
-* \return the index that meets the requirements
-*/
-
-int buscarEspacioVacio(Passenger list, int len);
 
 /** \brief To modify the passenger data in a list index
 * \param list Passenger* Pointer to array of passenger
@@ -126,14 +124,6 @@ int buscarEspacioVacio(Passenger list, int len);
 
 int modifyPassenger(Passenger *list, int len);
 
-/** \brief print the content of one passenger
-*
-* \param list Passenger*
-* \return void
-*/
-
-void showPassengerData(Passenger passenger);
-
 /** \brief loads a preselected set of passengers, each with
 * its own unique data to the list array
 * \param list Passenger* Pointer to array of passenger
@@ -141,7 +131,24 @@ void showPassengerData(Passenger passenger);
 * \return int Return (-1) if Error - (0) if Ok
 */
 
-int cargaForzada(Passenger list[], int len);
+int cargaForzada(Passenger* list, int len, int* contadorId);
+
+/** \brief Convierte el tipo de pasajero de un int a un string
+ *
+ * \param tipoPasajeroInt int
+ * \param tipoPasajero char*
+ * \return Retorna 0 si el proceso se realizo con exito, o -1 si hubo un error.
+ */
+int tipoPasajeroAChar(int tipoPasajeroInt, char* tipoPasajero);
+
+/** \brief Convierte el estado de vuelo de un int a un string
+ *
+ * \param estadoVueloInt int
+ * \param estadoVuelo char*
+ * \return Retorna 0 si el proceso se realizo con exito, o -1 si hubo un error.
+ */
+int estadoVueloAChar(int estadoVueloInt, char* estadoVuelo);
+
 
 
 #endif /* ARRAYPASSENGER_H_ */

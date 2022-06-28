@@ -10,8 +10,8 @@
 #include <string.h>
 #include <ctype.h>
 #include "ArrayPassenger.h"
-#include "utn.h"
 #include "menus.h"
+#include "utn.h"
 
 #define VACIO 0
 #define LLENO 1
@@ -37,47 +37,100 @@ int menu_modificaciones(Passenger* list, int index, int buffer)
 
 	if(list != NULL && index > -1 && buffer > 0)
 	{
-		do
-		{
-			printf("\n\nQue dato desea modificar?\n");
-			printf("\n1.Nombre");
-			printf("\n2.Apellido");
-			printf("\n3.Precio de vuelo");
-			printf("\n4.Codigo de vuelo");
-			printf("\n5.Tipo de pasajero");
-			printf("\n6.Estado del vuelo");
-			printf("\n7.Salir\n");
-			utn_getNumero(&opcion,"\nElegir opcion: ","\nERROR. Seleccione una opcion correcta.", 1, 7, 3);
+		printf("\nQue dato desea modificar?\n");
+		printf("\n1.Nombre");
+		printf("\n2.Apellido");
+		printf("\n3.Precio de vuelo");
+		printf("\n4.Tipo de pasajero");
+		printf("\n5.Codigo de vuelo");
+		printf("\n6.Salir\n");
+		utn_getNumero(&opcion,"\nElegir opcion: ","\nERROR. Seleccione una opcion correcta.", 1, 6, 3);
 
-			switch(opcion)
-			{
-				case 1:
-					utn_getNombre(list[index].name, 1, 51, "\nIngrese el nombre del pasajero: ","\nERROR. Ingrese solamente letras. ", 3);
-					break;
-				case 2:
-					utn_getNombre(list[index].lastName, 1, 51, "\nIngrese el apellido del pasajero: ", "\nERROR. Ingrese solamente letras.", 3);
-					break;
-				case 3:
-					utn_getNumeroFlotante(&list[index].price, "\nIngrese el precio del ticket (MAX $500.000, MIN $20.000): ", "\nERROR. Datos incorrectos.", 20000, 500000, 3);
-					break;
-				case 4:
-					utn_getNumero(&list[index].typePassenger,"\nIngrese el tipo de pasajero (0.Economy, 1.Excecutive): ", "\nERROR. Ingrese una opcion correcta.", 0, 2, 3);
-					break;
-				case 5:
-					utn_getCadena(list[index].flycode, 1, 11,"\nIngrese el codigo del vuelo (hasta 10 caracteres): ","\nERROR. Codigo incorrecto.", 3);
-					break;
-				default:
-					system("pause");
-					break;
-			}
-		}while(opcion != 6);
+		switch(opcion)
+		{
+			case 1:
+				utn_getNombre(list[index].name, 1, 51, "\nIngrese el nombre del pasajero: ","\nERROR. Ingrese solamente letras. ", 3);
+				printf("\nEl nombre del pasajero fue modificado.\n");
+				break;
+			case 2:
+				utn_getNombre(list[index].lastName, 1, 51, "\nIngrese el apellido del pasajero: ", "\nERROR. Ingrese solamente letras.", 3);
+				printf("\nEl apellido del pasajero fue modificado.\n");
+				break;
+			case 3:
+				utn_getNumeroFlotante(&list[index].price, "\nIngrese el precio del ticket (MAX $500.000, MIN $20.000): ", "\nERROR. Datos incorrectos.", 20000, 500000, 3);
+				printf("\nEl precio del vuelo del pasajero fue modificado.\n");
+				break;
+			case 4:
+				utn_getNumero(&list[index].typePassenger,"\nIngrese el tipo de pasajero (0.Economy, 1.Executive): ", "\nERROR. Ingrese una opcion correcta.", 0, 2, 3);
+				printf("\nEl tipo de pasajero fue modificado.\n");
+				break;
+			case 5:
+				utn_getCadena(list[index].flycode, 1, 11,"\nIngrese el codigo de vuelo (hasta 10 caracteres): ","\nERROR. Codigo incorrecto.", 3);
+				printf("\nEl codigo de vuelo del pasajero fue modificado.\n");
+				break;
+			case 6:
+				printf("\nModificacion cancelada.\n");
+				break;
+		}
 		retorno = 0;
 	}
 
 	return retorno;
 }
 
-// PARA REALIZAR CALCULOS E INFORMES
+int buscarEspacioVacio(Passenger* list, int len)
+{
+	int retorno = -1;
+
+	if(list != NULL && len > 0)
+	{
+		for(int i = 0; i < len; i++)
+		{
+			if(list[i].isEmpty == 1)
+			{
+				retorno = i;
+				break;
+			}
+		}
+	}
+	return retorno;
+}
+
+int comprobacionListaVacia(Passenger* list, int len)
+{
+	int retorno = 0;
+
+	if(list != NULL && len > 0)
+	{
+		for(int i = 0; i < len; i++)
+		{
+			if(list[i].isEmpty == 0)
+			{
+				retorno = -1;
+				break;
+			}
+		}
+	}
+	return retorno;
+}
+
+int calcularMayorId(int id[], int len)
+{
+	int retorno;
+
+	for(int i = 0; i < len; i++)
+	{
+		if(i == 0)
+		{
+			retorno = id[i];
+		}
+		else if(retorno < id[i])
+		{
+			retorno = id[i];
+		}
+	}
+	return retorno;
+}
 
 float calcularPrecioTotal(Passenger *list, int len)
 {
@@ -166,9 +219,8 @@ int informePrecios(Passenger *list, int len)
 
 	if(list != NULL && len > 0)
 	{
-		utn_getNumero(&orden,"Que orden alfabetico desea? (0.A a Z, 1.Z a A): ", "\nOpcion Incorrecta\n. ", 0, 1, 30);
+		utn_getNumero(&orden,"Que orden alfabetico desea? (0.A a Z, 1.Z a A): ", "\nOpcion Incorrecta.\n", 0, 1, 30);
 		sortPassengers(list, len, orden);
-		printPassenger(list, len);
 
 		suma = calcularPrecioTotal(list, len);
 		promedio = calcularPromedio(list, len, suma);
@@ -177,8 +229,10 @@ int informePrecios(Passenger *list, int len)
 		printf("\nEl precio promedio de los pasajes es: $%.2f.", promedio);
 		printf("\nHay %d pasajeros que superan el precio promedio.", cantidadMayoresAlPromedio);
 
-		utn_getNumero(&orden,"Que orden por codigo de vuelo desea? (0.A a Z, 1.Z a A): ", "\nOpcion Incorrecta\n. ", 0, 1, 30);
+		utn_getNumero(&orden,"\n\nQue orden por codigo de vuelo desea? (0.A a Z, 1.Z a A): ", "\nOpcion Incorrecta.\n", 0, 1, 30);
+		printf("\nLista de pasajeros por Código de vuelo y estado de vuelo ‘ACTIVO’\n");
 		sortPassengersByFlycode(list, len, orden);
+		printListHeader();
 		printPassengersByFlycode(list, len);
 
 		retorno = 0;
@@ -188,22 +242,33 @@ int informePrecios(Passenger *list, int len)
 
 int printPassengersByFlycode(Passenger* list, int len)
 {
-    int result = -1;
+    int retorno = -1;
+    char auxTipoPasajero[50];
+	char auxEstadoVuelo[50];
 
     if(list != NULL && len > 0)
     {
-        printf("\n");
         for(int i = 0; i < len; i++)
         {
         	if(list[i].isEmpty == 0 && list[i].statusFlight == 1)
         	{
-        		showPassengerData(list[i]);
+        		tipoPasajeroAChar(list[i].typePassenger, auxTipoPasajero);
+				estadoVueloAChar(list[i].statusFlight, auxEstadoVuelo);
+				printf("|%4d |%15s |%15s |%12.2f |%15s |%16s |%15s|\n",
+						list[i].id,
+						list[i].name,
+						list[i].lastName,
+						list[i].price,
+						list[i].flycode,
+						auxTipoPasajero,
+						auxEstadoVuelo);
         	}
         }
-        result = 0;
+        printf("+-----+----------------+----------------+-------------+----------------+-----------------+---------------+\n");
+        retorno = 0;
     }
 
-    return result;
+    return retorno;
 }
 
 int sortPassengersByFlycode(Passenger *list, int len, int order)
